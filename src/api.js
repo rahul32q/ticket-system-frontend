@@ -44,9 +44,14 @@ async function request(path, { method = 'GET', body, auth = false } = {}) {
     )
   }
 
-  const isJson = res.headers.get('content-type')?.includes('application/json')
-  const data = isJson ? await res.json().catch(() => null) : null
+  const text = await res.text()
 
+let data = null
+try {
+  data = text ? JSON.parse(text) : null
+} catch {
+  data = null
+}
   if (!res.ok) {
     throw new ApiError(data?.error || `Request failed with status ${res.status}`, res.status)
   }
