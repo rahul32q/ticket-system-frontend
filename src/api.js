@@ -1,7 +1,6 @@
 // Thin client for the ticket-system Go API.
 // Base URL can be overridden with VITE_API_URL (see .env.example).
-const BASE_URL = import.meta.env.VITE_API_URL || 'https://ticket-system-backend-sn4y.onrender.com'
-
+const BASE_URL = 'https://ticket-system-backend-sn4y.onrender.com'
 const TOKEN_KEY = 'deskline_token'
 
 export function getToken() {
